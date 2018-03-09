@@ -16,7 +16,7 @@ public class Midterm extends GradedActivity implements Comparable {
 	public boolean equals(GradedActivity a) {
 		// CODE HERE
 		// two midterms are equals when both of them have the same letter grade
-		
+		return this.getLetterGrade() == a.getLetterGrade();
 	}
 
 
@@ -27,6 +27,9 @@ public class Midterm extends GradedActivity implements Comparable {
 		// You may refer to Comparable interface for more information
 		// === CODE HERE ===
 
+		return this.getLetterGrade() < a.getLetterGrade();
+
+
 	}
 
 	@Override
@@ -35,7 +38,7 @@ public class Midterm extends GradedActivity implements Comparable {
 		// F is less than D, D is less than C, C is less than B, and B is less than A
 		// You may refer to Comparable interface for more information
 		// === CODE HERE ===
-		
+		return this.getLetterGrade() > a.getLetterGrade();
 	}
 
 	@Override

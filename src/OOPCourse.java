@@ -32,10 +32,13 @@ public class OOPCourse {
 		// Task 1: print number of students who have midterm's score higher than 59
 		System.out.println("Task 1 -------------------------------------------------");
 		// CODE HERE
-		
-		
-		
-		
+		int studentCount = 0;
+
+		for(String stuID: studentMidterm.keySet()){
+			if(studentMidterm.get(stuID).getScore() > 60) studentCount++;
+		}
+
+		System.out.println("Number of students whose midterm's score is higher than 60 is " + studentCount);
 		
 		// Task 2:
 		System.out.println("Task 2 -------------------------------------------------");
@@ -44,8 +47,11 @@ public class OOPCourse {
 		avgMidterm.setScore(3);
 		// print student ID, score and grade letter of students who are at the average grade (Hint: uses equals() method)
 		// CODE HERE
-		
-		
+
+		// Must cast studentMidter.get() to a Midterm Object so that it can be used with .equals()
+		for(String stuID: studentMidterm.keySet()){
+			if(((Midterm) studentMidterm.get(stuID)).equals(avgMidterm)) System.out.println("StudentID: " + stuID + " " + studentMidterm.get(stuID).toString());
+		}
 		
 		
 		
@@ -55,7 +61,14 @@ public class OOPCourse {
 		// You have to implement isGreater and isLessThan methods in Midterm class
 		// print number of students who have higher rank than the average midterm grade (avgMidterm)
 		// CODE HERE
-		
+
+		studentCount = 0;
+		for(String stuID: studentMidterm.keySet()){
+			if(((Midterm) studentMidterm.get(stuID)).isGreaterThan(avgMidterm)) studentCount++;
+		}
+
+		System.out.println("Number of students whose midterm are higher than the average midterm grade is " + studentCount);
+
 	}
 	
 }
