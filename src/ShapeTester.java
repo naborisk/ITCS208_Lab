@@ -35,6 +35,7 @@ public class ShapeTester {
 	      System.out.println("Area is " + s6.getArea());
 	      
 	      Circle s7 = new Circle();
+	      s7.setColor("green");
 	      System.out.println("--Test Circle object's overload method--");
 	      System.out.println("Area is " + s7.getArea(4.0));
 	      System.out.println(s7);
