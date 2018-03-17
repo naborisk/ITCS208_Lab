@@ -82,14 +82,14 @@ class Tweet
 	 * in a new Tweet object and returns it. If the input string is null, malformed, or 
 	 * does not contain all the tweet elements, it simply returns null. 
 	 * A valid input string has the following format:
-	 * <tweetID>,<timestamp>,[<uid>]<text>
+	 * <tweetID>,<timestamp>,�[<uid>]<text>�
 	 * Example of the input String:
 	 * 128590282278187009,20111024,"[@ephan331are]@BossGotCash: Shoutout to the guy who got world record of 1 million mileage on his Honda accord today.. Without changing engine, @AliMo103"
 	 */
 	public static Tweet parseTweet(String str)
 	{
 		if(str == null) return null;
-		String pStr = "YOUR REGEX HERE";	//<--Implement your regular expression here
+		String pStr = "([0-9]+),([0-9]+),\"\\[([@_a-zA-Z0-9]+)\\](.*)\"";	//<--Implement your regular expression here
 		Pattern p = Pattern.compile(pStr);
 		Matcher m = p.matcher(str);
 		Tweet t = null;
@@ -97,6 +97,10 @@ class Tweet
 		{	t = new Tweet();
 			//INSERT YOUR CODE HERE
 			//e.g. t.tweetID = Long.parseLong(m.group(1)); ...
+			t.tweetID = Long.parseLong(m.group(1));
+			t.timestamp = Integer.parseInt(m.group(2));
+			t.uid = m.group(3);
+			t.text = m.group(4);
 		}
 		
 		return t;
@@ -106,7 +110,18 @@ class Tweet
 	// ------------------------- BONUS -----------------------------
 	public String getCleanText()
 	{
-		return null;
+		String pStr = "([0-9]+),([0-9]+),\"\\[([@_a-zA-Z0-9]+)\\](.*)";	//<--Implement your regular expression here
+		Pattern p = Pattern.compile(pStr);
+		Matcher m = p.matcher(text);
+
+		String cleanText = text.replaceAll("(#[0-9A-Za-z_]+ )", "");
+		cleanText = cleanText.replaceAll("(@[0-9A-Za-z_]+)", "");
+		cleanText = cleanText.replaceAll("http://[0-9a-zA-Z_./]+", "");
+		cleanText = cleanText.replaceAll("[@!#$%&?.:,-]", " ");
+		cleanText = cleanText.replaceAll("[0-9]+ ", "");
+		cleanText = cleanText.replaceAll("[ ]+", " ");
+
+		return cleanText.toLowerCase();
 	}
 	//--------------------------------------------------------------
 }
@@ -146,8 +161,8 @@ public class Tester {
 		System.out.println(tweets.get(3).encrypt().decrypt().toXmlString());
 		
 		//For Bonus
-		//System.out.println(tweets.get(8).getCleanText());
-		//System.out.println(tweets.get(13).getCleanText());
+		System.out.println(tweets.get(8).getCleanText());
+		System.out.println(tweets.get(13).getCleanText());
 	
 	}
 }
