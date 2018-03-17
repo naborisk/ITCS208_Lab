@@ -13,5 +13,3 @@ dedicated to MUICT students for educational purposes
 
 ### Lab 09:
 - Tester.java
-  -Tester
-  -Tweet
