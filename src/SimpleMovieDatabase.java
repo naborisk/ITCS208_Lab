@@ -1,4 +1,11 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.io.FileUtils;
 
@@ -7,22 +14,55 @@ public class SimpleMovieDatabase {
 	
 	public void importMovies(String movieFilename)
 	{	//YOUR CODE GOES HERE
-		FileUtils.getFile(movieFilename);
+		movies = new HashMap<>();
+
+		String line;
+		try{
+			BufferedReader br = new BufferedReader(new FileReader("lab11_movies.txt"));
+			Pattern p = Pattern.compile("([0-9]+),(.*),(.*)");
+			Matcher m;
+
+			while((line = br.readLine()) != null){
+				m = p.matcher(line);
+
+				if(m.matches() && !m.group(2).equals(" ")) {
+					int mid = Integer.parseInt(m.group(1));
+					movies.put(mid, new Movie(mid, m.group(2)));
+					String[] tags = m.group(3).split("\\|");
+
+					for (String tag: tags){
+						movies.get(mid).addTag(tag);
+					}
+				}
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	
 	//-------------------BONUS----------------------
-//	public List<Movie> searchMovies(String query)
-//	{
-//		//YOUR BONUS CODE GOES HERE
-//		return null;
-//	}
-//
-//	public List<Movie> getMoviesByTag(String tag)
-//	{
-//		//YOUR BONUS CODE GOES HERE
-//		return null;
-//	}
+	public List<Movie> searchMovies(String query)
+	{
+		//YOUR BONUS CODE GOES HERE
+		ArrayList<Movie> searchedMovies = new ArrayList<>();
+		for(Integer key: movies.keySet()){
+			if(movies.get(key).title.toLowerCase().contains(query.toLowerCase())) searchedMovies.add(movies.get(key));
+		}
+
+		return searchedMovies;
+	}
+	
+	public List<Movie> getMoviesByTag(String tag)
+	{
+		//YOUR BONUS CODE GOES HERE
+		ArrayList<Movie> searchedMovies = new ArrayList<>();
+		for(Integer key: movies.keySet()){
+			if(movies.get(key).tags.contains(tag)) searchedMovies.add(movies.get(key));
+		}
+
+		return searchedMovies;
+	}
 	
 	
 	public static void main(String[] args)
@@ -37,7 +77,7 @@ public class SimpleMovieDatabase {
 		}
 		
 		//Uncomment for bonus
-		/*System.out.println("\n////////////////////////// BONUS ///////////////////////////////");
+		System.out.println("\n////////////////////////// BONUS ///////////////////////////////");
 		String[] queries = new String[]{"america", "thai", "thailand"};
 		for(String query: queries)
 		{
@@ -59,8 +99,5 @@ public class SimpleMovieDatabase {
 			}
 			System.out.println();
 		}
-		*/
-		
 	}
-
 }
