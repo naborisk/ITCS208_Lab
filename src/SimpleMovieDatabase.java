@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
@@ -7,22 +10,26 @@ public class SimpleMovieDatabase {
 	
 	public void importMovies(String movieFilename)
 	{	//YOUR CODE GOES HERE
-		FileUtils.getFile(movieFilename);
+		try{
+			BufferedReader br = new BufferedReader(new FileReader("src/lab11_movies.txt"));
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	
 	//-------------------BONUS----------------------
-//	public List<Movie> searchMovies(String query)
-//	{
-//		//YOUR BONUS CODE GOES HERE
-//		return null;
-//	}
-//
-//	public List<Movie> getMoviesByTag(String tag)
-//	{
-//		//YOUR BONUS CODE GOES HERE
-//		return null;
-//	}
+	public List<Movie> searchMovies(String query)
+	{
+		//YOUR BONUS CODE GOES HERE
+		return null;
+	}
+	
+	public List<Movie> getMoviesByTag(String tag)
+	{
+		//YOUR BONUS CODE GOES HERE
+		return null;
+	}
 	
 	
 	public static void main(String[] args)
