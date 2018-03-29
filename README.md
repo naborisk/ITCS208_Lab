@@ -12,5 +12,4 @@ dedicated to MUICT students for educational purposes
 - Circle.java (Challenge Bonus)
 
 ### Lab 09:
-- Calculator.java
-- CalculatorRunner.java
+- Tester.java
