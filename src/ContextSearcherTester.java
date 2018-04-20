@@ -48,7 +48,7 @@ public class ContextSearcherTester {
 		System.out.println("# Comparisons (Linear):"+Word.getNumComparisons()+"\n");
 		
 		//BONUS
-		/*System.out.println("********* BONUS for CRAZY PEOPLE************");
+		System.out.println("********* BONUS for CRAZY PEOPLE************");
 		
 		ContextSearcher binaryA = new BinaryContextSearcher("small.txt");
 		Word.resetCompareCounter();
@@ -92,6 +92,5 @@ public class ContextSearcherTester {
 		Word.resetCompareCounter();
 		System.out.println(binaryC.find(new Word("Mahidol", -1), 3));
 		System.out.println("# Comparisons (Binary):"+Word.getNumComparisons()+"\n");
-		*/
 	}
 }
