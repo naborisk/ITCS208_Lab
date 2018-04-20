@@ -1,5 +1,5 @@
 
-public interface Comparable {
+public interface ComparableGrade {
 	/*
 	 * check whether the input GradedActivity equals to this object or not
 	 * inputs: GradedActivity A

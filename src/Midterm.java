@@ -1,5 +1,5 @@
 
-public class Midterm extends GradedActivity implements Comparable {
+public class Midterm extends GradedActivity implements ComparableGrade {
 	int numQuestions, pointPerQuestion;
 	
 	public Midterm(int numQuestions, int pointPerQuestion){
