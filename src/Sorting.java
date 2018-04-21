@@ -75,9 +75,36 @@ public class Sorting {
                     count[i]++;
                 }
             }
-            if(i < stringList.size()-1){
-                if (!stringList.get(i).equals(stringList.get(i+1))){
+        }
+
+        sortByFreq(count, stringList);
+
+        for (int i = 0; i < stringList.size(); i++) {
+                if(i < stringList.size()-1){
+                    if (!stringList.get(i).equals(stringList.get(i+1))){
+                        System.out.println(stringList.get(i) + ": " + count[i]);
+                    }
+                }else{
                     System.out.println(stringList.get(i) + ": " + count[i]);
+                }
+        }
+
+    }
+
+    public static void sortByFreq(int[] freq, List<String> stringList){
+        String temp;
+        int tempInt;
+
+        for (int i = 0; i < stringList.size() - 1; i++) {
+            for (int j = 0; j < stringList.size() - i - 1; j++) {
+                if(freq[j] < freq[j+1]){
+                    temp = stringList.get(j);
+                    stringList.set(j, stringList.get(j+1));
+                    stringList.set(j+1, temp);
+
+                    tempInt = freq[j];
+                    freq[j] = freq[j+1];
+                    freq[j+1] = tempInt;
                 }
             }
         }
